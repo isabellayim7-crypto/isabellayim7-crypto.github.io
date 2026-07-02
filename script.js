@@ -75,6 +75,7 @@ reminderList.appendChild(listItem);
 }
 }
 
+
 function generate_year_range(start, end) {
 let years = "";
 for (let year = start; year <= end; year++) {
@@ -90,7 +91,7 @@ currentYear = today.getFullYear();
 selectYear = document.getElementById("year");
 selectMonth = document.getElementById("month");
 
-createYear = generate_year_range(1970, 2050);
+createYear = generate_year_range(1900, 3000);
 
 document.getElementById("year").innerHTML = createYear;
 
@@ -142,7 +143,6 @@ currentMonth = currentMonth === 0 ?
 11 : currentMonth - 1;
 showCalendar(currentMonth, currentYear);
 }
-
 function jump() {
 currentYear = parseInt(selectYear.value);
 currentMonth = parseInt(selectMonth.value);
@@ -184,8 +184,7 @@ month === today.getMonth()
 ) {
 cell.className = "date-picker selected";
 }
-
-if (hasEventOnDate(date, month, year)) {
+if(hasEventOnDate(date, month, year)) {
 cell.classList.add("event-marker");
 cell.appendChild(
 createEventTooltip(date, month, year)
@@ -229,9 +228,9 @@ eventDate.getFullYear() === year
 });
 }
 
+function hasEventOnDate(date, month, year) {
 return getEventsOnDate(date, month, year).length > 0;
 }
-
 
 function daysInMonth(iMonth, iYear) {
 return 32 - new Date(iYear, iMonth, 32).getDate();
